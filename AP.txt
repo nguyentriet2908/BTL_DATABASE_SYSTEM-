@@ -1,0 +1,51 @@
+xin chao ca nha nhe
+
+Theo Hãng tin Reuters, vụ phóng được thực hiện tại bãi phóng Starbase SpaceX ở gần Boca Chica thuộc bang Texas. 
+
+Công ty dự định đẩy tàu vũ trụ Starship gắn trên đỉnh tên lửa Super Heavy lên độ cao khoảng 90km so với mặt đất và sẽ kết thúc hành trình ngoài khơi Hawaii sau khoảng 90 phút bay.
+
+Nhưng bộ tăng tốc giai đoạn đầu của tên lửa Super Heavy đã phát nổ trên vịnh Mexico ngay sau khi tách ra, một webcast của SpaceX cho thấy.
+
+Trong lúc đó, tàu Starship vẫn tiến xa hơn vào không gian nhưng mất liên lạc sau vài phút. Ông John Insprucker, người dẫn chương trình phát trực tiếp vụ phóng của SpaceX khi đó ngờ vực rằng tàu vũ trụ Starship đã gặp sự cố.
+
+<div class="col-md-6 offset-md-3">
+                <?php echo isset($msg)?$msg:'';  ?>
+                <form action="" method="post" autocomplete="off">
+                    <div class="form-group mb-2">
+                        <label for="">Name</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="">Email</label>
+                        <input type="email" class="form-control" name="email">
+                    </div>
+                    <button class="btn btn-primary" type="submit" name="submit">submit</button>
+                </form>
+            </div>
+
+
+<?php
+session_start();
+include './Model/homeBack.php';
+
+// Check if the form is submitted
+if (isset($_POST['submit'])) {
+    
+    // Set a session variable to store the success message
+    $_SESSION['message'] = "Booking Appointment Successfully";
+
+    // Redirect to the same page (PRG pattern)
+    header("Location: $_SERVER[PHP_SELF]");
+    exit();
+}
+
+// Check if there is a success message in the session
+$message = isset($_SESSION['message']) ? "<div class='alert alert-success'>{$_SESSION['message']}</div>" : null;
+
+// Clear the session message to prevent it from persisting across multiple page views
+unset($_SESSION['message']);
+?>
+
+The behavior you're observing might be due to how browser caching and form resubmission work. When you submit a form, some browsers will cache the form submission to allow users to refresh the page without accidentally re-submitting the form data.
+
+To avoid this behavior, you can use a technique called the "Post/Redirect/Get" pattern. Instead of directly rendering the message after form submission, you redirect the user to another page or the same page after the form is processed. This way, when the user refreshes the page, they are only refreshing the result page, not re-submitting the form.
